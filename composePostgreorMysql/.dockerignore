@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+
+# Python (En önemlileri)
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.python-version
+
+# Sanal Ortamlar (Kesinlikle imajın içine gitmemeli)
+env/
+venv/
+.env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django Spesifik
+db.sqlite3
+db.sqlite3-journal
+media/
+static/
+staticfiles/
+
+# Docker & Log
+.dockerignore
+docker-compose.yml
+docker-compose.override.yml
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Dosyaları
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Veritabanı verilerini Git'e ekleme
+data/
+**/data/db/
+
+# IDE/Editörler
+.visualstudio/
+.vscode/
+.idea/
+*.swp
+*.swo
