@@ -73,13 +73,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',  # Use 'django.db.backends.mysql' for MySQL
+    #     'NAME': 'postgres',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'postgres',
+    #     'HOST': 'db',  # Use the service name defined in docker-compose.yml
+    #     'PORT': 5432,
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Use 'django.db.backends.mysql' for MySQL
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'ENGINE': 'django.db.backends.mysql',  # Use 'django.db.backends.postgresql' for PostgreSQL
+        'NAME': 'django-app-db',
+        'USER': 'root',
+        'PASSWORD': '',  # MySQL için şifre boş bırakıldı
         'HOST': 'db',  # Use the service name defined in docker-compose.yml
-        'PORT': 5432,
+        'PORT': 3306,
     }
 }
 

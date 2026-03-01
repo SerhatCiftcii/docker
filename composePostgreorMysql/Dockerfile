@@ -6,11 +6,17 @@ ENV PYTHONUNBUFFERED=1
 # Çalışma dizini
 WORKDIR /django_app
 
-# Sistem bağımlılıklarını yükle (psycopg2 için gerekli)
+# # Sistem bağımlılıklarını yükle (psycopg2 için gerekli)
+# RUN apt-get update && apt-get install -y \
+#     gcc \
+#     libpq-dev \
+#     python3-dev \
+#     build-essential \
+#     && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y \
     gcc \
-    libpq-dev \
-    python3-dev \
+    default-libmysqlclient-dev \
+    pkg-config \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 

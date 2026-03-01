@@ -1,17 +1,48 @@
+# services:
+#   db:
+#     image: postgres:15
+#     container_name: postgres_db
+#     restart: always
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
+#       POSTGRES_DB: postgres
+#     volumes:
+#       - ./data/db:/var/lib/postgresql/data
+#     # Veritabanının gerçekten hazır olup olmadığını kontrol eder
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U postgres"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 5
+
+#   app:
+#     build: .
+#     container_name: django_container
+#     command: python manage.py runserver 0.0.0.0:8006
+#     volumes:
+#       - .:/django_app
+#     ports:
+#       - "8006:8006"
+#     depends_on:
+#       db:
+#         condition: service_healthy # db sağlıklı olana kadar bekle
+
+
+
+#mysql için db servisi
 services:
   db:
-    image: postgres:15
-    container_name: postgres_db
+    image: mysql:8
+    container_name: mysql_db
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      MYSQL_DATABASE: django-app-db
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
     volumes:
-      - ./data/db:/var/lib/postgresql/data
-    # Veritabanının gerçekten hazır olup olmadığını kontrol eder
+      - ./data/mysql/db:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -26,4 +57,4 @@ services:
       - "8006:8006"
     depends_on:
       db:
-        condition: service_healthy # db sağlıklı olana kadar bekle
+        condition: service_healthy
